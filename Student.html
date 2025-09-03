@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Taffy DB Student CRUD</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/taffydb/2.7.3/taffy-min.js"></script>
+    </head>
+    <body>
+        <h2>Open Browser Console (f12) to see the output</h2>
+        <script>
+            var db = TAFFY([
+                {id:1,name:"Pari",marks:95,city:"Mumbai"},
+                {id:2,name:"Aarchi",marks:90,city:"Surat"}
+            ]);
+            console.log("All Students:",db().get());
+
+            db.insert(
+                {id:3,name:"Roy",marks:88,city:"Thane"}
+            );
+            console.log("After interting:",db().get());//insert single
+            
+            db.insert([
+                {id:4,name:"Jay",marks:85,city:"Noida"},
+                {id:5,name:"Sia",marks:80,city:"Indore"} 
+            ]);
+            console.log("After interting:",db().get());//insert multiple
+
+            var studentById = db({id:2}).first();
+            console.log("Student with ID 2: ",studentById);//access single
+
+            var studentById = db({marks:{gt:86}}).get();
+            console.log("Students with marks > 86: ",studentById);//access multiple
+
+            db({id:2}).update({marks:92});
+            console.log("after updating marks of ID 2: ",db().get());//update
+
+            db({id:5}).remove();
+            console.log("After deleting ID 5: ",db().get());//delete
+
+            var sorted = db().order("name").get();
+            console.log("After sorting  name in ascending order",sorted);//ascending sort
+            
+            var sortedb = db().order("-name").get();
+            console.log("After sorting  name in descending order",sortedb);//descending sort
+
+            var limited = db().limit(2).get()
+            console.log("Display first 2 Students :", limited);//get only first 2 records
+
+            //chain queries(Filter students with marks >= 90,
+            // Sort them by name in ascending order, 
+            // Get the result)
+            var topStudents = db({marks:{gte:90}})  // Step 1: filter 
+                .order("name")  // Step 2: sort by name ascending
+                .get(); // Step 3: return array of results 
+            console.log("Top Students: ",topStudents);
+            
+        </script>
+    </body>
+</html>

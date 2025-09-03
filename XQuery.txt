@@ -1,0 +1,63 @@
+insert node 
+<book id="2"> 
+<title>Advanced XML</title> 
+<author>Jane Doe</author> 
+<year>2021</year> 
+</book> 
+into //library
+
+insert node <publisher>Tech Press</publisher> 
+into //book[@id="1"]
+
+insert node <book id="1.5"><title>XML in Practice</title><author>Mary 
+Lee</author><year>2020</year></book> 
+before //book[@id="2"] 
+
+//book/title 
+
+//book/title/text()
+
+let $doc:=doc("C:\Users\Aparna\Desktop\NMIMS\book.xml") 
+return $doc//title/text()
+
+for $b in //book 
+return <info> 
+<title>{$b/title/text()}</title> 
+<author>{$b/author/text()}</author> 
+</info> 
+
+for $b in //book[year > 2020] 
+return $b 
+
+count(//book)
+
+
+for $b in //book[author = "Jane Doe"] 
+return $b/title
+
+for $b in //book 
+return $b/@id
+
+for $b in //book 
+order by xs:integer($b/year) descending 
+return $b
+
+replace value of node 
+//book[title='Advanced XML']/title   
+with 'Computer Science' 
+
+
+replace value of node //book[@id="2"]/@id with "20"
+
+
+delete node //book[@id="20"]
+
+
+delete node //book/author
+
+
+rename node $doc//book[@id="1"]/title as "bookTitle"
+
+
+rename node $doc//book/@id as "bookId"
+

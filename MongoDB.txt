@@ -1,0 +1,34 @@
+Read
+
+$gt → Matches values greater than a specified value.
+
+$lte → Matches values less than or equal to a specified value.
+
+$in → Matches values that exist in an array of specified values.
+
+$size → Matches arrays with the exact specified number of elements.
+
+$elemMatch → Matches documents that have an array element satisfying all given conditions.
+
+$all → Matches arrays containing all specified elements (order doesn’t matter).
+
+
+Update
+
+$set → Updates the value of a field (creates it if it doesn’t exist).
+
+$push → Adds a value to an array field.
+
+$mul → Multiplies the value of a field by a specified number.
+
+$lt → Matches values less than a specified value.
+
+$pull → Removes elements from an array that match a condition.
+
+$addToSet → Adds a value to an array only if it does not already exist.
+
+$each → Modifies arrays by applying another operator (like $push or $addToSet) to multiple values at once.
+
+
+
+
